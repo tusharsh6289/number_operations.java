@@ -1,5 +1,5 @@
 Number Operations Program
-Description
+
 This Java-based program offers a variety of number manipulation and checking operations. The operations include reversing a number, checking for palindromes, prime numbers, generating Fibonacci sequences, counting digits, calculating factorials, and finding prime factors. The program is interactive and allows users to perform multiple operations in a single session.
 
 Features
