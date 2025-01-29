@@ -1,0 +1,210 @@
+import java.util.*;
+
+public class Numbertester {
+    static long reversedNumber;
+    static long inputNumber, originalNumber;
+    static long userInput;
+    static Scanner scan1 = new Scanner(System.in);
+
+    // Method to reverse a number
+    public static void reverse() {
+        reversedNumber = 0;
+        System.out.println("Please enter your number");
+        long mynum = scan1.nextLong();
+        originalNumber = mynum;
+
+        // Reverse the number
+        while (mynum != 0) {
+            reversedNumber = 10 * reversedNumber + mynum % 10;
+            mynum = mynum / 10;
+        }
+    }
+
+    // Method to check if the number is a palindrome
+    public static void palindrome() {
+        reverse();  // Call reverse method to reverse the number
+        if (originalNumber == reversedNumber) {
+            System.out.println("Yes, this is a palindrome.");
+        } else {
+            System.out.println("Not a palindrome.");
+        }
+    }
+
+    // Method to check if the number is prime
+    public static void prime() {
+        System.out.println("Please enter your number to check whether the number is a prime number or not.");
+        inputNumber = scan1.nextLong();
+        boolean prime = true;
+
+        if (inputNumber < 2) {
+            System.out.println("Not a prime number.");
+            return;
+        }
+
+        // Check for prime number
+        for (int i = 2; i < Math.sqrt(inputNumber); i++) {
+            if (inputNumber % i == 0) {
+                prime = false;
+                break;
+            }
+        }
+
+        if (prime == true) {
+            System.out.println("It is a prime number.");
+        }
+        if (prime == false) {
+            System.out.println("Not a prime number.");
+        }
+    }
+
+    // Method to print prime numbers up to 'n'
+    public static void printPrimesUpToN() {
+        System.out.println("Please enter the number up to which you want to check the prime numbers.");
+        inputNumber = scan1.nextLong();
+        if (inputNumber < 2) {
+            System.out.println("Not a prime number.");
+            return;
+        }
+        boolean isPrime = true;
+        System.out.println("Your prime numbers are mentioned below:");
+        for (long j = 2; j <= inputNumber; j++) {
+            isPrime = true;
+            for (long i = 2; i < j; i++) {
+                if (j % i == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+            if (isPrime == true) {
+                System.out.println(j);
+            }
+        }
+    }
+
+    // Method to print Fibonacci series up to 'n' elements
+    public static void printFibonacci() {
+        System.out.print("Enter the number of elements of Fibonacci numbers you want to print: ");
+        long a1 = 0;
+        long a2 = 1;
+        long numberOfElements = scan1.nextLong();
+        long ax;
+        for (int i = 0; i < numberOfElements; i++) {
+            System.out.println(a1);
+            ax = a2;
+            a2 = a1 + a2;
+            a1 = ax;
+        }
+    }
+
+    // Method to count the number of digits in a number
+    public static void countDigits() {
+        System.out.println("Please enter the number of which you want to count the digits");
+        inputNumber = scan1.nextLong();
+        long numberOfDigits = 0;
+
+        if (inputNumber == 0) {
+            System.out.println("Number of digits in the entered number is 1.");
+        }
+
+        // Count the digits of the number
+        while (inputNumber != 0) {
+            inputNumber = inputNumber / 10;
+            numberOfDigits = numberOfDigits + 1;
+        }
+        System.out.println("Number of digits in the entered number is " + numberOfDigits + ".");
+    }
+
+    // Method to print the factorial of any number
+    public static void printFactorial() {
+        System.out.print("Enter the number to print its factorial: ");
+        long num = scan1.nextLong();
+        long result = 1;
+        for (int i = 1; i <= num; i++) {
+            result = result * i;
+        }
+        System.out.println("Factorial of your number is " + result + ".");
+    }
+
+    // Method to calculate prime factors of any number
+    public static void calculatePrimeFactors() {
+        System.out.print("Enter the number of which prime factors are to be calculated: ");
+        int num = scan1.nextInt();
+        long factorCount = 1;
+        System.out.println("Prime factors are:");
+        for (int i = 2; i <= num; i++) {
+            while (num % i == 0) {
+                System.out.println(factorCount + ". " + i);
+                num = num / i;
+                factorCount = factorCount + 1;
+            }
+        }
+    }
+
+    // Method to display the main menu
+    public static void displayMainMenu() {
+        System.out.println("\nWelcome to the program of some types of number checkers ");
+        System.out.println(" ");
+        System.out.println("Please select which operation you want to perform from the available ones");
+    }
+
+    // Method to execute the selected operation
+    public static void executeOperation() {
+        System.out.println("1. Reverse a number \n2. Check The Palindrome. \n3. Check whether the number is a prime number or not. \n4. Print prime numbers up to n numbers. \n5. Print Fibonacci series up to n elements.\n6. Count number of digits in a number.\n7. Print factorial of any number. \n8. Print prime factors of any number.");
+        System.out.print("Your option: ");
+        userInput = scan1.nextLong();
+        if (userInput == 1) {
+            reverse();
+            System.out.println("Your reversed number is: " + reversedNumber);
+        }
+        if (userInput == 2) {
+            palindrome();
+        }
+        if (userInput == 3) {
+            prime();
+        }
+        if (userInput == 4) {
+            printPrimesUpToN();
+        }
+        if (userInput == 5) {
+            printFibonacci();
+        }
+        if (userInput == 6) {
+            countDigits();
+        }
+        if (userInput == 7) {
+            printFactorial();
+        }
+        if (userInput == 8) {
+            calculatePrimeFactors();
+        }
+
+        if (userInput > 8) {
+            System.out.println("Invalid input\n");
+        }
+        if (userInput < 1) {
+            System.out.println("Invalid input\n");
+        }
+    }
+
+    // Main method to drive the program
+    public static void main(String[] args) {
+        displayMainMenu();
+        executeOperation();
+
+        // Ask the user if they want to perform another operation
+        for (int i = 1; i > 0; i++) {
+            System.out.println("\n\nAnything else you want to perform from the available options.");
+            System.out.println("1. Yes \n2. No");
+            long repeat = scan1.nextLong();
+            if (repeat == 1) {
+                reversedNumber = 0;
+                System.out.println("Please enter what you want to perform again");
+                executeOperation();
+            }
+            if (repeat == 2) {
+                System.out.println("Program ends here.");
+                break;
+            }
+        }
+    }
+}
